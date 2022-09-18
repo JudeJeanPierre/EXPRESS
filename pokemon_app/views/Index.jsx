@@ -5,6 +5,11 @@ class Index extends React.Component {
             const myStyle = {
                 color: 'red',
                 backgroundColor: '#ccc',
+                textAlign: 'center',   
+            };
+
+            const myStyle1 = {
+                backgroundColor: '#ccc',
                 textAlign: 'left',   
             };
 
@@ -12,6 +17,8 @@ class Index extends React.Component {
             return(
                 <div style={myStyle}>
                 <h1>See All The Pokemon</h1>
+
+                <div style={myStyle1}>
                 <ul>
                     {pokemon.map((mon, i) => {
                         return(
@@ -23,8 +30,8 @@ class Index extends React.Component {
                         );
                     })}
                 </ul> 
-
                 </div>
+            </div>
             );
             }
         }  
