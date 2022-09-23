@@ -31,6 +31,8 @@ mongoose.connection.once("open", () => {
 app.get('/', (req, res) => {
     res.send('new')
 })
+
+// All the Routes
 // Index
 app.get("/logs", (req, res) => {
     Log.find({}, (err, allLogs) => {
@@ -61,6 +63,14 @@ app.post('/logs', (req, res) => {
 //     res.send('received')
 //     // res.redirect('/logs');
 // });
+
+// Delete
+app.delete("/logs/:id", (req, res) => {
+    Log.findByIdAndRemove(req.params.id, (err, foundLog) => {
+        console.log("Deleted", foundLog);
+        res.redirect("/logs");
+    });
+});
 
 // Show
 app.get("/logs/:id", (req, res) => {
