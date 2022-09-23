@@ -72,6 +72,14 @@ app.delete("/logs/:id", (req, res) => {
     });
 });
 
+// Edit
+app.get("/logs/:id/edit", (req, res) => {
+    Log.findById(req.params.id, (err, foundLog) => {
+        console.log(err);
+        res.render("Edit", { log: foundLog });
+    });
+});
+
 // Show
 app.get("/logs/:id", (req, res) => {
     Log.findById(req.params.id, (err, foundLog) => {
