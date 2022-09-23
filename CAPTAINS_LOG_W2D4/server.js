@@ -31,6 +31,14 @@ mongoose.connection.once("open", () => {
 app.get('/', (req, res) =>{
     res.send('new')
 })
+// Index
+app.get("/logs", (req, res) => {
+    Log.find({}, (err, allLogs) => {
+      console.log(err);
+  
+      res.render("index", { logs: allLogs });
+    });
+  });
 // New
 app.get('/logs/new', (req, res) => {
     res.render('New', {})
