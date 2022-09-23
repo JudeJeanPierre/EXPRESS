@@ -12,8 +12,8 @@ app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
 // ---->Middleware
 app.use((req, res, next) => {
-  console.log("I'm here for the routes");
-  next();
+    console.log("I'm here for the routes");
+    next();
 });
 // Parser
 app.use(express.urlencoded({ extended: false }));
@@ -21,24 +21,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 // Mongoose connection
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
 mongoose.connection.once("open", () => {
-  console.log("connected to mongo");
+    console.log("connected to mongo");
 });
 
-app.get('/', (req, res) =>{
+app.get('/', (req, res) => {
     res.send('new')
 })
 // Index
 app.get("/logs", (req, res) => {
     Log.find({}, (err, allLogs) => {
-      console.log(err);
-  
-      res.render("index", { logs: allLogs });
+        console.log(err);
+
+        res.render("index", { logs: allLogs });
     });
-  });
+});
 // New
 app.get('/logs/new', (req, res) => {
     res.render('New', {})
@@ -62,8 +62,16 @@ app.post('/logs', (req, res) => {
 //     // res.redirect('/logs');
 // });
 
+// Show
+app.get("/logs/:id", (req, res) => {
+    Log.findById(req.params.id, (err, foundLog) => {
+        console.log(err);
+        console.log("Found", foundLog);
+        res.render("Show", { log: foundLog });
+    });
+});
 
 
 app.listen("3000", (req, res) => {
-  console.log("Server Running on port 3000");
+    console.log("Server Running on port 3000");
 });
