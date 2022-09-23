@@ -16,7 +16,7 @@ class Edit extends React.Component {
                         <input type="checkbox" name="shipIsBroken" />
                     )}
                     <br />
-                    <input type="submit" value="Create Log" /> <br />
+                    <input type="submit" value="Update Log" /> <br />
                 </form>
             </div>
         );

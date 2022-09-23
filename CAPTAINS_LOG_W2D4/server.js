@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 // Mongoose
 const mongoose = require("mongoose");
-const Student = require('./models/logs')
+const Log = require('./models/logs')
 // Override
 const methodOverride = require("method-override");
 // Env
@@ -28,16 +28,15 @@ mongoose.connection.once("open", () => {
     console.log("connected to mongo");
 });
 
-app.get('/', (req, res) => {
-    res.send('new')
-})
+// app.get('/', (req, res) => {
+//     res.send('new')
+// })
 
 // All the Routes
 // Index
 app.get("/logs", (req, res) => {
     Log.find({}, (err, allLogs) => {
         console.log(err);
-
         res.render("index", { logs: allLogs });
     });
 });
@@ -51,7 +50,7 @@ app.post('/logs', (req, res) => {
     } else {
         req.body.shipIsBroken = false;
     }
-    Student.create(req.body, (err, createdLog) => {
+    Log.create(req.body, (err, createdLog) => {
         console.log(err)
         // res.send(createdLog)
     })
@@ -80,6 +79,28 @@ app.get("/logs/:id/edit", (req, res) => {
     });
 });
 
+// Seed
+app.get('/logs/seed', (req, res) => {
+    Log.create([
+        {
+            title: "Captain",
+            entry: " Jude Jean Pierre",
+            isShipBroken: false,
+        },
+        {
+            title: "Trainer",
+            entry: "Norman",
+            isShipBroken: false,
+        }, 
+        {
+            title: "Controller",
+            entry: "David",
+            isShipBroken: true,
+        }
+    ], (err, data) => {
+        res.redirect('/logs')
+    });
+})
 // Show
 app.get("/logs/:id", (req, res) => {
     Log.findById(req.params.id, (err, foundLog) => {
