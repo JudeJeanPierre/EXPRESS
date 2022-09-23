@@ -89,6 +89,18 @@ app.get("/logs/:id", (req, res) => {
     });
 });
 
+// UPDATE: Put/Patch
+app.put("/logs/:id", (req, res) => {
+    if (req.body.shipIsBroken === "on") {
+        req.body.shipIsBroken = true;
+    } else {
+        req.body.shipIsBroken = false;
+    }
+    Log.findByIdAndUpdate(req.params.id, req.body, (err, updatedLog) => {
+        res.redirect(`/logs/${req.params.id}`);
+    });
+});
+
 
 app.listen("3000", (req, res) => {
     console.log("Server Running on port 3000");
