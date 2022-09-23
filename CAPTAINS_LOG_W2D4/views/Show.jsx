@@ -2,8 +2,13 @@ const React = require("react");
 
 class Show extends React.Component {
     render() {
+        const myStyle = {
+            color: 'red',
+            backgroundColor: '#ccc',
+            textAlign: 'left',   
+        };
         return (
-            <div>
+            <div style={myStyle}>
                 <h1>{this.props.log.title}</h1>
                 <h3>{this.props.log.entry}</h3>
                 <h3>

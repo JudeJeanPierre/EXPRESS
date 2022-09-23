@@ -2,10 +2,15 @@ const React = require("react");
 
 class Index extends React.Component {
     render() {
+        const myStyle = {
+            color: 'red',
+            backgroundColor: '#ccc',
+            textAlign: 'left',   
+        };
         const { logs } = this.props;
         console.log(logs);
         return (
-            <div>
+            <div style={myStyle}>
                 <h1>Captain's Logs List:</h1>
                 <nav>
                     <a href="/logs/new">Create New Log</a>

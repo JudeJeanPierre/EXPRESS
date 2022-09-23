@@ -2,9 +2,14 @@ const React = require("react");
 
 class Edit extends React.Component {
     render() {
+        const myStyle = {
+            color: 'red',
+            backgroundColor: '#ccc',
+            textAlign: 'left',   
+        };
         const { log } = this.props;
         return (
-            <div>
+            <div style = {myStyle}>
                 <form action={`/logs/${log._id}?_method=PUT`} method="POST">
                     Title: <input defaultValue={log.title} type="text" name="title" />
                     <br />
