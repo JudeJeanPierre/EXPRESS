@@ -1,0 +1,17 @@
+const mongoose = require('mongoose');
+
+const memberSchema = new mongoose.Schema({
+    name: {type: String, required: true},
+    address: {type: String, required: true},
+    email: {type: String, required: true}, 
+    phone: {type: String, required: true},
+    repentanceYear: {type: Number, required: true},
+    churchAffiliationLocation: {type: String, required: true},
+    pastor: {type: String, required: true},
+    memberIsBaptized: Boolean
+});
+
+const Member = mongoose.model('Member', memberSchema)
+
+module.exports = Member
+

@@ -1,0 +1,15 @@
+const mongoose = require('mongoose');
+
+const pastorSchema = new mongoose.Schema({
+    name: {type: String, required: true},
+    email: {type: String, required: true}, 
+    phone: {type: String, required: true},
+    churchRegion: {type: String, required: true},
+    rankInChurch: {type: String, required: true},
+    isMissionBoardMember: Boolean
+});
+
+const Pastor = mongoose.model('Pastor', pastorSchema)
+
+module.exports = Pastor
+
