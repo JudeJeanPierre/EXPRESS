@@ -1,0 +1,57 @@
+/* @import url('https://fonts.googleapis.com/css?family=Comfortaa|monotype'); */
+
+body {
+    /* background: url('https://miro.medium.com/max/1400/0*R9GnXjOjKXi9LezM'); */
+    background-color: antiquewhite;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    margin: 0;
+    font-family: 'Trebuchet';
+    
+}
+
+h1 {
+    font-family: 'Trebuchet';
+    background: antiquewhite;
+    color: orangered;
+    margin: 0;
+    margin-bottom: .5em;
+    padding: 1em;
+    text-align: left;
+}
+/* 
+a {
+    color: orange;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px black;
+    font-size: 1.5em;
+    background: rgba(193, 235, 187, .9);
+}
+
+a:hover {
+    color: ghostwhite;
+}
+
+li {
+    list-style: none;
+}
+
+li a {
+    color: mediumseagreen;
+}
+
+input[type=text] {
+    padding: .3em;
+} */
+
+input[type=submit] {
+    padding: .3em;
+    color: red;
+    background: yellow;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 15%;
+    border: solid rgb(255, 0, 183);
+    cursor: pointer;
+}
