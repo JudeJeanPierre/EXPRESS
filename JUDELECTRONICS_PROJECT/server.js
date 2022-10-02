@@ -9,6 +9,7 @@ const Billing = require('./models/billing')
 const Order = require('./models/orders')
 const Cart = require('./models/cart')
 const User = require('./models/users')
+const Home = require('./models/home')
 const port = 3000;
 const methodOverride = require('method-override');
 // Jsx
@@ -30,8 +31,22 @@ mongoose.connect(process.env.MONGO_URI, {
 mongoose.connection.once("open", () =>{
     console.log("Connected to Mongo");
 });
-// ////////////////// Routes /////////////////////////////////
+// ////////////////// ROUTES /////////////////////////////////
 
+///// Home Routes /////
+app.get('/home', (req, res) => {
+    Home.find({}, (err, allHome) =>{
+        console.log(err)
+    
+    res.render('IndexHome', {
+        home: allHome
+
+    });  
+    })
+})  
+
+
+///// Product Routes /////
 // Index
 app.get("/products", (req, res) => {
     Product.find({}, (err, allProducts) => {
@@ -82,7 +97,7 @@ app.get('/products/seed', (req, res) =>{
             isProductNew: true
         },
         {
-            name: "PHILIPS FX10",
+            name: "Philips FX10",
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNCaWRsOuzZgnAgdfkGKyRLjrsz_B3oTe1tJXecfyhZ5PXoql4XJi_tsePjMD6sg4R3ug&usqp=CAU",
             brand: "Philips",
             price: "$150",

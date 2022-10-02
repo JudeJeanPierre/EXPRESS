@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Comfortaa|monotype'); */
+
 
 body {
     /* background: url('https://miro.medium.com/max/1400/0*R9GnXjOjKXi9LezM'); */
@@ -6,44 +6,29 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;
-    margin: 0;
+    margin-right: 0;
     font-family: 'Trebuchet';
     
 }
-
 h1 {
     font-family: 'Trebuchet';
-    background: antiquewhite;
-    color: orangered;
-    margin: 0;
+    color: purple;
+    font-weight: bolder;
+    margin-left: 10%;
     margin-bottom: .5em;
+    margin-top: 5%;
     padding: 1em;
     text-align: left;
 }
-/* 
-a {
-    color: orange;
-    text-decoration: none;
-    text-shadow: 1px 1px 1px black;
-    font-size: 1.5em;
-    background: rgba(193, 235, 187, .9);
+h2 {
+    font-family: 'Trebuchet';
+    background: antiquewhite;
+    color: orangered;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0.2em;
+    text-align: center;
 }
-
-a:hover {
-    color: ghostwhite;
-}
-
-li {
-    list-style: none;
-}
-
-li a {
-    color: mediumseagreen;
-}
-
-input[type=text] {
-    padding: .3em;
-} */
 
 input[type=submit] {
     padding: .3em;
@@ -54,4 +39,68 @@ input[type=submit] {
     border-radius: 15%;
     border: solid rgb(255, 0, 183);
     cursor: pointer;
+}
+
+.container-fluid{
+    /* color: green; */
+    background-color: orange;
+    font-weight: bold;
+}
+
+.logo{
+    height: 11vh;
+    border-radius: 50%;
+    margin-right: 2%;
+    margin-left: 0%;
+    margin-top: 0%;
+
+}
+.btn-group{
+    border: blue;
+    background-color: rgb(29, 29, 203);
+
+}
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.inView{
+    height: 80vh;
+    width: 620px;
+    display: flex;
+    margin-top: 3%;
+    z-index: -1;
+}
+
+.prodPicContainer{
+    display:flex;
+    flex-wrap:wrap;
+    padding:5px;
+    height:80vh;
+    width: 55%;
+    margin-left: 5%;
+
+}
+
+.prodPicBox{
+    /* border:solid skyblue; */
+    margin:10px;
+    width:250px;
+    background-size: contain;
+}
+.prodPicBox:hover{
+    margin:6px;
+    width:250px;
+    
+}
+.prodPicInfo{
+    font-size:18px;
+    height:70px;
+    text-align:center;
+    color:blue;
+    font-weight: bold;
+}
+.item{
+    width:100%;
 }
