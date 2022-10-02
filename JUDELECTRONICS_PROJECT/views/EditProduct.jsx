@@ -28,7 +28,10 @@ class EditProduct extends React.Component{
                 <br/><br/>
                 <input type="submit" name="" value=" Update Product's Data" /> <br/>
                 </form>
-
+                <br/>
+                <a href="/products">Back to Products List</a>
+                <br/><br/>
+                <a href="/home">Back to Home</a>
             </div>
         );
     }

@@ -25,13 +25,13 @@ class DefaultLayout extends React.Component {
                       <a class="nav-link active" aria-current="page" href="/products">Products</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/orders">Order Now</a>
+                      <a class="nav-link" href="/orders">Orders</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/users">User in</a>
+                      <a class="nav-link" href="/users">Users</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/cart">Cart</a>
+                      <a class="nav-link" href="/carts">Cart</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

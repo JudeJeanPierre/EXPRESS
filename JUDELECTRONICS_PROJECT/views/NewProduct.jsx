@@ -4,6 +4,7 @@ class NewProduct extends React.Component {
     render() {
         return (
             <DefaultLayout title={"New Product Arrival"}>
+                <a href="/home">Back to Home</a><br/><br/>
                 <div>
                     <form action="/products" method="POST"> <br />
                         Name: <input type="text" name="name" />

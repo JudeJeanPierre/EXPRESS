@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 app.use(express.static('public'));
 const Product = require('./models/products')
-const Billing = require('./models/billing')
 const Order = require('./models/orders')
-const Cart = require('./models/cart')
+const Cart = require('./models/carts')
 const User = require('./models/users')
 const Home = require('./models/home')
 const port = 3000;
@@ -44,8 +43,6 @@ app.get('/home', (req, res) => {
     });  
     })
 })  
-
-
 ///// Product Routes /////
 // Index
 app.get("/products", (req, res) => {
@@ -63,9 +60,14 @@ app.get('/products/new', (req, res) =>{
 })
 // Post
 app.post('/products', (req, res) =>{
+    if(req.body.isProductNew === "on"){
+        req.body.isProductNew = true;
+        } else{
+            req.body.isProductNew = false
+        }
     Product.create(req.body, (err, createdProduct) => {
         console.log(err)
-        console.log("Successfully added:", createdProduct)
+        
     })
     res.redirect('/products')
 })
@@ -157,6 +159,172 @@ app.get("/products/:id", (req, res) => {
     });
 });
 
+///// Order Routes /////
+// Index
+app.get("/orders", (req, res) => {
+    Order.find({}, (err, allOrders) => {
+        console.log(err)
+
+        res.render('IndexOrder', {
+            orders: allOrders
+        });
+    });
+})
+// New
+app.get('/orders/new', (req, res) =>{
+    res.render('NewOrder', {})
+})
+// Post
+app.post('/orders', (req, res) =>{
+    Order.create(req.body, (err, createdOrder) => {
+        console.log(err)
+        
+    })
+    res.redirect('/orders')
+})
+// Edit
+app.get('/orders/:id/edit', (req, res) =>{
+    Order.findById(req.params.id, (err, foundOrder) =>{
+        console.log(err);
+        res.render("EditOrder", { order: foundOrder });
+    });
+})
+// Update
+app.put("/orders/:id", (req, res) => {
+    Order.findByIdAndUpdate(req.params.id, req.body, (err, updatedOrder) => {
+        res.redirect(`/orders/${req.params.id}`);
+    });
+});
+// Delete
+app.delete('/orders/:id', (req, res) =>{
+    Order.findByIdAndRemove(req.params.id, (err, foundOrder) =>{
+        console.log("Deleted", foundOrder);
+        res.redirect("/orders");
+    });
+});
+// Show
+app.get("/orders/:id", (req, res) => {
+    Order.findById(req.params.id, (err, foundOrder) => {
+        console.log(err);
+        console.log("Found", foundOrder);
+        res.render("ShowOrder", { order: foundOrder });
+    });
+});
+
+///// User Routes /////
+// Index
+app.get("/users", (req, res) => {
+    User.find({}, (err, allUsers) => {
+        console.log(err)
+
+        res.render('IndexUser', {
+            users: allUsers
+        });
+    });
+})
+// New
+app.get('/users/new', (req, res) =>{
+    res.render('NewUser', {})
+})
+// Post
+app.post('/users', (req, res) =>{
+    if(req.body.isUserNew === "on"){
+        req.body.isUserNew = true;
+        } else{
+            req.body.isUserNew = false
+        }
+    User.create(req.body, (err, createdUser) => {
+        console.log(err)
+        
+    })
+    res.redirect('/users')
+})
+
+// Edit
+app.get('/users/:id/edit', (req, res) =>{
+    User.findById(req.params.id, (err, foundUser) =>{
+        console.log(err);
+        res.render("EditUser", { user: foundUser });
+    });
+})
+// Update
+app.put("/users/:id", (req, res) => {
+    if (req.body.isAdmin === "on") {
+        req.body.isAdmin = true;
+    } else {
+        req.body.isAdmin = false;
+    }
+    User.findByIdAndUpdate(req.params.id, req.body, (err, updatedUser) => {
+        res.redirect(`/users/${req.params.id}`);
+    });
+});
+// Delete
+app.delete('/users/:id', (req, res) =>{
+    User.findByIdAndRemove(req.params.id, (err, foundUser) =>{
+        console.log("Deleted", foundUser);
+        res.redirect("/users");
+    });
+});
+// Show
+app.get("/users/:id", (req, res) => {
+    User.findById(req.params.id, (err, foundUser) => {
+        console.log(err);
+        console.log("Found", foundUser);
+        res.render("ShowUser", { user: foundUser });
+    });
+});
+
+///// Cart Routes /////
+// Index
+app.get("/carts", (req, res) => {
+    Cart.find({}, (err, allCarts) => {
+        console.log(err)
+
+        res.render('IndexCart', {
+            carts: allCarts
+        });
+    });
+})
+// New
+app.get('/carts/new', (req, res) =>{
+    res.render('NewCart', {})
+})
+// Post
+app.post('/carts', (req, res) =>{
+    Cart.create(req.body, (err, createdCart) => {
+        console.log(err)
+        
+    })
+    res.redirect('/carts')
+})
+// Edit
+app.get('/carts/:id/edit', (req, res) =>{
+    Cart.findById(req.params.id, (err, foundCart) =>{
+        console.log(err);
+        res.render("EditCart", { cart: foundCart });
+    });
+})
+// Update
+app.put("/carts/:id", (req, res) => {
+    Cart.findByIdAndUpdate(req.params.id, req.body, (err, updatedCart) => {
+        res.redirect(`/carts/${req.params.id}`);
+    });
+});
+// Delete
+app.delete('/carts/:id', (req, res) =>{
+    Cart.findByIdAndRemove(req.params.id, (err, foundCart) =>{
+        console.log("Deleted", foundCart);
+        res.redirect("/carts");
+    });
+});
+// Show
+app.get("/carts/:id", (req, res) => {
+    Cart.findById(req.params.id, (err, foundCart) => {
+        console.log(err);
+        console.log("Found", foundCart);
+        res.render("ShowCart", { cart: foundCart });
+    });
+});
 
 // //////////// Server Setup ///////////////////
 app.listen(port, (req, res) =>{

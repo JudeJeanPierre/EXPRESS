@@ -1,21 +1,14 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
+        orderName: { type: String, required: true },
         userId: { type: String, required: true },
-        products: [
-            {
-                product_id: {
-                    type: String,
-                },
-                quantity: {
-                    type: Number,
-                    default: 1,
-                },
-            },
-        ],
-        amount: { type: Number, required: true },
         address: { type: String, required: true },
-        status: { type: String, default: "pending" },
+        productName: { type: String, required: true },
+        product_id: {type: String},
+        category: { type: String, required: true },
+        quantity: {type: Number,default: 1},
+        amount: { type: Number, required: true },
     },
     { timestamps: true }
     );

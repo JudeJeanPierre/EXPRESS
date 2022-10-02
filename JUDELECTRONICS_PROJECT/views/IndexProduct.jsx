@@ -6,7 +6,7 @@ class IndexProduct extends React.Component {
         const { products } = this.props;
         return (
             <DefaultLayout title={"Explore Our Products"}>
-                
+                <a href="/home">Back to Home</a><br/><br/><br/>
                 <div>
                 <nav>
                     <a href="/products/new">Add New Product to Stock</a>
@@ -20,13 +20,13 @@ class IndexProduct extends React.Component {
                                 <a href={`/products/${product._id}/edit`}>Edit Product's Data</a> <br/>
 
                                 <form action={`/products/${product._id}?_method=DELETE`} method="POST">
-                                    <input type="submit" value="Delete" /> <br/><br/>
+                                    <input type="submit" value="Delete Product" /> <br/><br/>
                                 </form>
                             </li>
                         );
                     })}
                 </ol>
-                <a href="/home">Back to Home Page</a>
+                <br/><br/>
                 </div>
             </DefaultLayout>
         );

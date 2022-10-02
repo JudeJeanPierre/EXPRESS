@@ -19,8 +19,10 @@ class ShowProduct extends React.Component {
                         ? "Brand New Product"
                         : "Refurbished/Used Product"}
                 </h4>
-                <br />
-                <a href="/products">Back to Product Listings</a>
+                <br/><br/>
+                <a href="/products">Back to Products List</a>
+                <br/><br/>
+                <a href="/home">Back to Home</a>
                 </div>
             </DefaultLayout>
         );
