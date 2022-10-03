@@ -15,7 +15,7 @@ class IndexProduct extends React.Component {
                     {products.map((product, i) => {
                         return (
                             <li key={i}>
-                                <a href={`/products/${product.id}`}>{product.name}</a>
+                                <a href={`/products/${product.id}`}>{product.productName}</a>
                                 <br />
                                 <a href={`/products/${product._id}/edit`}>Edit Product's Data</a> <br/>
 

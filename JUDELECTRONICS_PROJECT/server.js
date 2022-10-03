@@ -1,4 +1,4 @@
-// /////////////// Requirements and Init ///////////////////////
+// ////////////////////////// REQUIREMENTS & INITIALIZATION //////////////////////////////////////
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 mongoose.connection.once("open", () =>{
     console.log("Connected to Mongo");
 });
-// ////////////////// ROUTES /////////////////////////////////
+// //////////////////////////////////////////// ROUTES ///////////////////////////////////////////////
 
 ///// Home Routes /////
 app.get('/home', (req, res) => {
@@ -43,7 +43,7 @@ app.get('/home', (req, res) => {
     });  
     })
 })  
-///// Product Routes /////
+////////////////// Product Routes /////////////////
 // Index
 app.get("/products", (req, res) => {
     Product.find({}, (err, allProducts) => {
@@ -73,11 +73,11 @@ app.post('/products', (req, res) =>{
 })
 
 
-// ///////////////// Seeds /////////////////////
+// //////////////////////////////////// SEEDS ///////////////////////////////////////////
 app.get('/products/seed', (req, res) =>{
     Product.create([
         {
-            name: "Pavilion 15",
+            productName: "Pavilion 15",
             image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c07961089.png",
             brand: "HP",
             price: "$549",
@@ -88,7 +88,7 @@ app.get('/products/seed', (req, res) =>{
             isProductNew: true
         },
         {
-            name: "Galaxy s22 Ultra",
+            productName: "Galaxy s22 Ultra",
             image: "https://cdn1-production-images-kly.akamaized.net/aXCAN7Icui3lkDiFWblRHAVZIy8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3666794/original/077611000_1639367963-galaxy_S22_Ultra.jpg",
             brand: "Samsung",
             price: "$800",
@@ -99,7 +99,7 @@ app.get('/products/seed', (req, res) =>{
             isProductNew: true
         },
         {
-            name: "Philips FX10",
+            productName: "Philips FX10",
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNCaWRsOuzZgnAgdfkGKyRLjrsz_B3oTe1tJXecfyhZ5PXoql4XJi_tsePjMD6sg4R3ug&usqp=CAU",
             brand: "Philips",
             price: "$150",
@@ -110,7 +110,7 @@ app.get('/products/seed', (req, res) =>{
             isProductNew: true
         },
         {
-            name: "Samsung Class 7 Series",
+            productName: "Samsung Class 7 Series",
             image: "https://images.samsung.com/is/image/samsung/au-ru7100-ua75ru7100wxxy-rperspectiveblack-152560930?$720_576_PNG$",
             brand: "Samsung",
             price: "$1,250",
@@ -159,7 +159,7 @@ app.get("/products/:id", (req, res) => {
     });
 });
 
-///// Order Routes /////
+////////////// Order Routes ///////////////
 // Index
 app.get("/orders", (req, res) => {
     Order.find({}, (err, allOrders) => {
@@ -206,12 +206,15 @@ app.delete('/orders/:id', (req, res) =>{
 app.get("/orders/:id", (req, res) => {
     Order.findById(req.params.id, (err, foundOrder) => {
         console.log(err);
-        console.log("Found", foundOrder);
-        res.render("ShowOrder", { order: foundOrder });
+        Product.find({name: foundOrder.productName}, (err, foundProduct) =>{
+            console.log("Found", foundOrder);
+            console.log("Found", foundProduct[0]); 
+            res.render("ShowOrder", { order: foundOrder, productId: foundProduct[0]._id }); 
+        })
     });
 });
 
-///// User Routes /////
+////////////// User Routes //////////////
 // Index
 app.get("/users", (req, res) => {
     User.find({}, (err, allUsers) => {
@@ -274,7 +277,7 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-///// Cart Routes /////
+////////////////////// Cart Routes ///////////////////////////
 // Index
 app.get("/carts", (req, res) => {
     Cart.find({}, (err, allCarts) => {
@@ -321,12 +324,15 @@ app.delete('/carts/:id', (req, res) =>{
 app.get("/carts/:id", (req, res) => {
     Cart.findById(req.params.id, (err, foundCart) => {
         console.log(err);
-        console.log("Found", foundCart);
-        res.render("ShowCart", { cart: foundCart });
+        Product.find({name: foundCart.productName}, (err, foundProduct) =>{
+            console.log("Found", foundCart);
+            console.log("Found", foundProduct[0]); 
+            res.render("ShowCart", { cart: foundCart, productId: foundProduct[0]._id }); 
+        })
     });
 });
 
-// //////////// Server Setup ///////////////////
+// /////////////////////////////////////// SERVER SETUP ///////////////////////////////////////////////
 app.listen(port, (req, res) =>{
     console.log(`Server listening on port ${port}`);
 });

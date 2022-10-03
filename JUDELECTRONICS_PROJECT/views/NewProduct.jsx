@@ -7,7 +7,7 @@ class NewProduct extends React.Component {
                 <a href="/home">Back to Home</a><br/><br/>
                 <div>
                     <form action="/products" method="POST"> <br />
-                        Name: <input type="text" name="name" />
+                        Product Name: <input type="text" name="productName" />
                         <br /><br />
                         Image: <input type="text" name="image" />
                         <br /><br />

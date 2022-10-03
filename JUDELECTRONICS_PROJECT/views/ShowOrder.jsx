@@ -10,7 +10,7 @@ class ShowOrder extends React.Component {
                 <h4>Order's Name: {this.props.order.orderName}</h4>
                 <h4>User ID: {this.props.order.userId}</h4>
                 <h4>Address: {this.props.order.address}</h4>
-                <h4>Product Name: {this.props.order.productName}</h4>
+                <a href={`/products/${this.props.productId}`}><h4>Product Name: {this.props.order.productName}</h4></a>
                 <h4>Product ID #: {this.props.order.product_id} </h4>
                 <h4>Category: {this.props.order.category}</h4>
                 <h4>Quantity: {this.props.order.quantity}</h4>

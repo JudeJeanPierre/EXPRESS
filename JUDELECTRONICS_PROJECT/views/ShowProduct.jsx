@@ -6,7 +6,7 @@ class ShowProduct extends React.Component {
         return (
             <DefaultLayout title={"Product Profile"}>
                 <div>
-                <h4>Name: {this.props.product.name}</h4>
+                <h4>Product Name: {this.props.product.productName}</h4>
                 <h4>Image:</h4> <img src= {this.props.product.image} />
                 <h4>Brand: {this.props.product.brand}</h4>
                 <h4>Price: {this.props.product.price}</h4>

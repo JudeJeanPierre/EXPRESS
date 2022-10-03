@@ -10,7 +10,7 @@ class EditProduct extends React.Component{
         return(
             <div style={myStyle}>
                 <form action={`/products/${this.props.product._id}?_method=PUT`} method="POST"><br/>
-                Name: <input defaultValue={this.props.product.name} type= "text" name="name" /><br/><br/>
+                Name: <input defaultValue={this.props.product.productName} type= "text" name="productName" /><br/><br/>
                 Image: <input defaultValue={this.props.product.image} type= "text" name="image" /><br/><br/>
                 Brand: <input defaultValue={this.props.product.brand} type= "text" name="brand" /> <br/><br/>
                 Price: <input defaultValue={this.props.product.price} type= "text" name="price" /><br/><br/>
